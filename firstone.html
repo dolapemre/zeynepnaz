@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Romantik Website</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI Emoji','Noto Color Emoji', Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.3);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(6px);
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            background: #ff5e78;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: #ff3e60;
+        }
+
+        .heart {
+            position: fixed;
+            animation: floatUp 5s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-150px); }
+        }
+
+        .letter-box {
+            display: none;
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 300px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+            animation: pop 0.4s ease;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0.5) translate(-50%, -50%); opacity: 0; }
+            100% { transform: scale(1) translate(-50%, -50%); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Selam size bir mektup var.</h1>
+    </header>
+
+    <div class="container">
+        <button onclick="showLove()"> Press it bitchh </button>
+    </div>
+
+    <div class="letter-box" id="letterBox">
+        <p>Askimmm seni cok seviyorum cogu zaman seni kirdigimin farkindayim hepsi icin ozur dilerim seni cok seviyorum. ufak bir ozur olarak kabul et bunu. her seyi beraber yenmek istiyorum.</p>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement("img");
+            heart.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24' fill='red'><path d='M12 21.35l-1.45-1.32C5 15.36 2 12.28 2 8.5c0-2.5 2-4.5 4.5-4.5c1.74 0 3.41 1.01 4.13 2.44h1C14.09 5.01 15.76 4 17.5 4C20 4 22 6 22 8.5c0 3.78-3 6.86-8.55 11.54L12 21.35z'/></svg>";
+            heart.classList.add("heart");
+
+            heart.style.position = "fixed";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = window.innerHeight + "px";
+            heart.style.width = "26px";
+            heart.style.height = "26px";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        function showLove() {
+            let count = 0;
+            let burst = setInterval(() => {
+                createHeart();
+                count++;
+                if (count > 120) clearInterval(burst);
+            }, 40);
+
+            document.getElementById("letterBox").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
